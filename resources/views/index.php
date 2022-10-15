@@ -21,7 +21,8 @@ $contatos = json_decode(file_get_contents('../../data/contatos.json'));
                 <th class="table-dark bg-indigo text-center" scope="col">Nome</th>
                 <th class="table-dark bg-indigo text-center" scope="col">Idade</th>
                 <th class="table-dark bg-indigo text-center" scope="col">Sexo</th>
-                <th class="table-dark bg-indigo text-center rounded-top-right" scope="col">Telefone</th>
+                <th class="table-dark bg-indigo text-center" scope="col">Telefone</th>
+                <th class="table-dark bg-indigo text-center rounded-top-right" scope="col"><i class="fa-solid fa-screwdriver-wrench"></i></th>
             </tr>
         </thead>
     
@@ -36,6 +37,13 @@ $contatos = json_decode(file_get_contents('../../data/contatos.json'));
                                 <td class="table-light text-center"><?php echo $contato->idade ?></td>
                                 <td class="table-light text-center"><?php echo $contato->sexo ?></td>
                                 <td class="table-light text-center"><?php echo $contato->telefone ?></td>
+                                <td class="table-light text-center d-flex justify-content-center">
+                                    <form action="../../Http/Models/Contato.php" method="post">
+                                        <input type="hidden" name="acao" value="excluir">
+                                        <button type="submit" class="btn btn-danger" name="id" value="<?php echo $key ?>"><i class="fa-solid fa-trash"></i></button>
+                                    </form>
+                                    <a class="btn btn-primary" href="alterar-contato.php?id=<?php echo $key ?>"><i class="fa-solid fa-pencil"></i></a>
+                                </td>
                             </tr>
                         <?php
                     }
